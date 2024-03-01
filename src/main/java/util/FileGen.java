@@ -15,8 +15,8 @@ public class FileGen {
 
     @Test
     public void test() throws IOException {
-        String path = "D:\\git\\java-note\\src\\main\\java\\leetcode";
-        for (int i = 0; i < 40; i++) {
+        String path = "D:\\minato\\leetcode\\src\\main\\java";
+        for (int i = 0; i < 60; i++) {
             String reg = "\\_" + (i * 50 + 1) + "__" + (i * 50 + 50);
             File f = new File(path + reg);
             if (!f.exists()) {
@@ -29,7 +29,7 @@ public class FileGen {
                     System.out.println(child.mkdir());
                     File file = new File(child.getPath() + "\\Demo01.java");
                     FileWriter fileWriter = new FileWriter(file);
-                    fileWriter.write("package " +
+                    String code = "package " +
                             child.getPath().replace(path, "").replace("\\", ".").substring(1) +
                             ";\n\n" +
                             "import org.junit.Test;\n" +
@@ -42,7 +42,9 @@ public class FileGen {
                             "\n" +
                             "    }\n" +
                             "    \n" +
-                            "}");
+                            "}";
+                    System.out.println(code);
+                    fileWriter.write(code);
                     fileWriter.flush();
                     fileWriter.close();
                 }
